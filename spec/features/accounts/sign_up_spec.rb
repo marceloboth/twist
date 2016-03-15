@@ -14,10 +14,7 @@ feature "Accounts" do
     click_button "Create Account"
 
     expect(page).to have_content("Signed in as test@example.com")
+    expect(page).to have_content("Your account has been successfully created.")
     expect(page.current_url).to eq("http://test.lvh.me/")
-
-    within(".flash_notice") do
-      success_message = "Your account has been successfully created."
-      expect(page).to have_content(success_message)
-    end end
+  end
 end
