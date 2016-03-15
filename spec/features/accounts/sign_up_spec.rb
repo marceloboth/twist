@@ -6,6 +6,7 @@ feature "Accounts" do
     click_link "Create a new account"
 
     fill_in "Name", with: "Test"
+    fill_in "Subdomain", with: "test"
     fill_in "Email", with: "test@example.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
@@ -13,6 +14,7 @@ feature "Accounts" do
     click_button "Create Account"
 
     expect(page).to have_content("Signed in as test@example.com")
+    expect(page.current_url).to eq("http://test.lvh.me/")
 
     within(".flash_notice") do
       success_message = "Your account has been successfully created."
