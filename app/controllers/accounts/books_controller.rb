@@ -1,7 +1,8 @@
 module Accounts
   class BooksController < Accounts::BaseController
-    skip_before_filter :authenticate_user!, only: [:receive]
     skip_before_filter :verify_authenticity_token, only: :receive
+    skip_before_filter :authenticate_user!, only: [:receive]
+    skip_before_filter :authorize_user!, only: [:receive]
 
     def index
       @books = Book.where(hidden: false)
